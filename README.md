@@ -26,15 +26,23 @@ Or install it yourself as:
 
 The library needs to be configured with your account's API key which is available in your [Blaze Verify Dashboard](https://app.blazeverify.com/api). Set `BlazeVerify.api_key` to its value:
 
+### Setup
+
 ```ruby
 require 'blazeverify'
-BlazeVerify.api_key = 'live_...'
 
+# set api key
+BlazeVerify.api_key = 'live_...'
+```
+
+### Verification
+
+```ruby
 # verify an email address
 BlazeVerify.verify('jarrett@blazeverify.com')
 ```
 
-### Slow Email Server Handling
+#### Slow Email Server Handling
 
 Some email servers are slow to respond. As a result the timeout may be reached
 before we are able to complete the verification process. If this happens, the
@@ -47,6 +55,44 @@ allocation within a 5 minute window.
 {
     "message" => "Your request is taking longer than normal. Please send your request again."
 }
+```
+
+### Batch Verification
+
+#### Start a batch
+
+```ruby
+emails = ['jarrett@blazeverify.com', 'support@blazeverify.com', ...]
+batch = BlazeVerify::Batch.new(emails)
+
+# you can optionally pass in a callback url that we'll POST to when the
+# batch is complete.
+batch = BlazeVerify::Batch.new(emails, callback: 'https://blazeverify.com/')
+
+# start verifying the batch
+batch.verify
+```
+
+#### Get the status / results of a batch
+
+Calling `status` on a batch will return the status. It will contain the results as well once complete. You can also `results` to get just the results.
+
+```ruby
+id = '5cfcbfdeede34200693c4319'
+batch = BlazeVerify::Batch.new(id)
+
+# get status of batch
+batch.status
+
+# gets the results
+batch.status.emails
+
+# get the counts
+batch.status.total_counts
+batch.status.reason_counts
+
+# returns true / false
+batch.complete?
 ```
 
 ## Development

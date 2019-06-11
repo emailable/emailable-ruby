@@ -3,12 +3,13 @@ module BlazeVerify
 
     def initialize
       @client = Faraday.new('https://api.blazeverify.com/v1') do |f|
+        f.request :url_encoded
         f.response :json, content_type: /\bjson$/
         f.adapter :net_http_persistent
       end
     end
 
-    def request(method, endpoint, opts)
+    def request(method, endpoint, opts = {})
       begin
         tries ||= 0
 

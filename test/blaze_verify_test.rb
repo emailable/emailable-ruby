@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class BlazeVerifyTest < Minitest::Test
+
   def setup
     BlazeVerify.api_key = 'test_7aff7fc0142c65f86a00'
     @result ||= BlazeVerify.verify('jarrett@blazeverify.com')
@@ -45,6 +46,14 @@ class BlazeVerifyTest < Minitest::Test
   def test_verification_tag
     result = BlazeVerify.verify('jarrett+marketing@blazeverify.com')
     assert result.tag == 'marketing'
+  end
+
+  def test_account
+    BlazeVerify.api_key = 'test_7aff7fc0142c65f86a00'
+    account = BlazeVerify.account
+
+    refute_nil account.owner_email
+    refute_nil account.available_credits
   end
 
 end
