@@ -1,12 +1,12 @@
 require 'faraday'
 require 'faraday_middleware'
-require 'blaze_verify/version'
-require 'blaze_verify/client'
-require 'blaze_verify/batch'
-require 'blaze_verify/resources/api_resource'
-require 'blaze_verify/resources/account'
-require 'blaze_verify/resources/batch_status'
-require 'blaze_verify/resources/verification'
+require 'blazeverify/version'
+require 'blazeverify/client'
+require 'blazeverify/batch'
+require 'blazeverify/resources/api_resource'
+require 'blazeverify/resources/account'
+require 'blazeverify/resources/batch_status'
+require 'blazeverify/resources/verification'
 
 module BlazeVerify
   @max_network_retries = 1

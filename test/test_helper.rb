@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require 'blaze_verify'
+require 'blazeverify'
 
 require 'minitest/autorun'
 require 'minitest/reporters'

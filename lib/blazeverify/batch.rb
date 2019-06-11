@@ -30,7 +30,7 @@ module BlazeVerify
 
       response = @client.request(:get, 'batch', { id: @id })
       bs = BatchStatus.new(response.body)
-      @status = bs unless bs.complete?
+      @status = bs if bs.complete?
 
       bs
     end
