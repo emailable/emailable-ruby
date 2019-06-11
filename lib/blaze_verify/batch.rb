@@ -6,23 +6,22 @@ module BlazeVerify
       if id_or_emails.is_a?(Array)
         @emails = id_or_emails
         @callback = callback
-        @verifying = false
-      else
+      elsif id_or_emails.is_a?(String)
         @id = id_or_emails
-        @verifying = true
+      else
+        raise ArgumentError, 'expected an array of emails or batch id'
       end
 
       @client = BlazeVerify::Client.new
     end
 
     def verify
-      return nil if @verifying
+      return @id unless @id.nil?
 
       opts = { emails: @emails.join(','), url: @callback }
       response = @client.request(:post, 'batch', opts)
 
       @id = response.body['id']
-      @id
     end
 
     def status
@@ -31,13 +30,13 @@ module BlazeVerify
 
       response = @client.request(:get, 'batch', { id: @id })
       bs = BatchStatus.new(response.body)
-      @status = bs if bs.complete?
+      @status = bs unless bs.complete?
 
       bs
     end
 
     def complete?
-      !status.emails.nil?
+      !status.complete?
     end
   end
 end
