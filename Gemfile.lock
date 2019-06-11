@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    blazeverify (0.1.0)
+    blazeverify (1.0.0)
       faraday (~> 0.13)
       faraday_middleware
       net-http-persistent
