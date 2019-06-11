@@ -1,5 +1,8 @@
 # Blaze Verify Ruby Library
 
+[![Build Status](https://travis-ci.com/blazeverify/blazeverify-ruby.svg)](https://travis-ci.com/blazeverify/blazeverify-ruby)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2d74c69a9155109058a7/maintainability)](https://codeclimate.com/github/blazeverify/blazeverify-ruby/maintainability)
+
 This is the official ruby wrapper for the Blaze Verify API.
 
 ## Documentation
