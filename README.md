@@ -7,7 +7,7 @@ This is the official ruby wrapper for the Blaze Verify API.
 
 ## Documentation
 
-See the [Ruby API docs](https://blazeverify.com/docs/api).
+See the [Ruby API docs](https://blazeverify.com/docs/api#ruby).
 
 ## Installation
 

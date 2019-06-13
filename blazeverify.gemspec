@@ -8,7 +8,8 @@ Gem::Specification.new do |s|
   s.name = 'blazeverify'
   s.version = BlazeVerify::VERSION
   s.summary = 'Ruby bindings for the Blaze Verify API'
-  s.description = 'Email Verification that’s astonishingly easy and low-cost.'
+  s.description = 'Email Verification that’s astonishingly easy and low-cost. '\
+                  'See https://blazeverify.com for details.'
   s.homepage = 'https://blazeverify.com'
   s.author = 'Blaze Verify'
   s.email = 'support@blazeverify.com'
