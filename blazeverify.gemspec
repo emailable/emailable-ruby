@@ -14,6 +14,11 @@ Gem::Specification.new do |s|
   s.author = 'Blaze Verify'
   s.email = 'support@blazeverify.com'
   s.license = 'MIT'
+  s.metadata = {
+    "bug_tracker_uri" => "https://github.com/blazeverify/blazeverify-ruby/issues",
+    "documentation_uri" => "https://docs.blazeverify.com/?ruby",
+    "source_code_uri" => "https://github.com/blazeverify/blazeverify-ruby"
+  }
 
   s.files = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- test/*`.split("\n")

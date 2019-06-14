@@ -21,12 +21,6 @@ class BlazeVerifyTest < Minitest::Test
     assert %w(deliverable undeliverable risky unknown).include?(@result.state)
   end
 
-  def test_verification_free
-    result = BlazeVerify.verify('jarrett@gmail.com')
-    assert result.free?
-    refute @result.free?
-  end
-
   def test_verification_role
     result = BlazeVerify.verify('support@blazeverify.com')
     assert result.role?
@@ -37,10 +31,6 @@ class BlazeVerifyTest < Minitest::Test
     result = BlazeVerify.verify('jarrett@gmali.com')
     assert result.did_you_mean, 'jarrett@gmail.com'
     assert_nil @result.did_you_mean
-  end
-
-  def test_verification_score
-    assert @result.score.is_a?(Integer)
   end
 
   def test_verification_tag

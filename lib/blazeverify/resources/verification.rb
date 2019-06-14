@@ -8,5 +8,6 @@ module BlazeVerify
         instance_variable_get "@#{method}"
       end
     end
+
   end
 end
