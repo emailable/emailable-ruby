@@ -1,7 +1,8 @@
 module BlazeVerify
   class Verification < APIResource
     attr_accessor :accept_all, :did_you_mean, :disposable, :domain, :email,
-                  :free, :reason, :role, :score, :state, :tag, :user
+                  :free, :mx_record, :reason, :role, :score, :smtp_provider,
+                  :state, :tag, :user
 
     %w(accept_all disposable free role).each do |method|
       define_method("#{method}?") do
