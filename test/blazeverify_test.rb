@@ -46,4 +46,19 @@ class BlazeVerifyTest < Minitest::Test
     refute_nil account.available_credits
   end
 
+  def test_name_and_gender
+    result = BlazeVerify.verify('johndoe@blazeverify.com')
+    if %w(deliverable risky unknown).include?(@result.state)
+      assert result.first_name, 'John'
+      assert result.last_name, 'Doe'
+      assert result.first_name, 'John Doe'
+      assert result.gender, 'male'
+    else
+      assert_nil result.first_name
+      assert_nil result.last_name
+      assert_nil result.full_name
+      assert_nil result.gender
+    end
+  end
+
 end
