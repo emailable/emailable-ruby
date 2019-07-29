@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    blazeverify (1.1.0)
+    blazeverify (1.2.0)
       faraday (~> 0.13)
       faraday_middleware
       net-http-persistent
@@ -26,7 +26,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     multipart-post (2.1.1)
-    net-http-persistent (3.0.1)
+    net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     pry (0.12.2)
       coderay (~> 1.1.0)
