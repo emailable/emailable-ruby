@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    blazeverify (1.2.0)
+    blazeverify (1.3.0)
       faraday (~> 0.13)
       faraday_middleware
       net-http-persistent
@@ -14,7 +14,7 @@ GEM
     builder (3.2.3)
     coderay (1.1.2)
     connection_pool (2.2.2)
-    faraday (0.15.4)
+    faraday (0.17.0)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
