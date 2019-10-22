@@ -15,6 +15,7 @@ class BlazeVerifyTest < Minitest::Test
     refute_nil @result.score
     refute_nil @result.state
     refute_nil @result.user
+    refute_nil @result.duration
   end
 
   def test_verification_state
@@ -39,7 +40,6 @@ class BlazeVerifyTest < Minitest::Test
   end
 
   def test_account
-    BlazeVerify.api_key = 'test_7aff7fc0142c65f86a00'
     account = BlazeVerify.account
 
     refute_nil account.owner_email
