@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'faraday_middleware'
   s.add_dependency 'net-http-persistent'
   s.add_development_dependency 'bundler'
-  s.add_development_dependency 'rake', '~> 10.0'
+  s.add_development_dependency 'rake', '~> 13.0'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'awesome_print'
   s.add_development_dependency 'minitest', '~> 5.0'
