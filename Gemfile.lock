@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    blazeverify (1.3.0)
+    blazeverify (1.3.1)
       faraday (~> 0.13)
       faraday_middleware
       net-http-persistent
@@ -31,7 +31,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    rake (10.5.0)
+    rake (13.0.1)
     ruby-progressbar (1.10.1)
 
 PLATFORMS
@@ -44,7 +44,7 @@ DEPENDENCIES
   minitest (~> 5.0)
   minitest-reporters
   pry
-  rake (~> 10.0)
+  rake (~> 13.0)
 
 BUNDLED WITH
    1.17.3
