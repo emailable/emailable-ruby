@@ -17,17 +17,15 @@ module BlazeVerify
 
   module_function
 
-  def verify(email, smtp: nil, accept_all: nil, timeout: nil)
+  def verify(email, timeout: 10, smtp: nil, accept_all: nil)
     opts = {
-      email: email, smtp: smtp, accept_all: accept_all, timeout: timeout
+      email: email, smtp: smtp, accept_all: accept_all
     }
 
     client = BlazeVerify::Client.new
-    response = client.request(:get, 'verify', opts)
 
-    if response.status == 249
-      response.body
-    else
+    Timeout.timeout(timeout) do
+      response = client.request(:get, 'verify', opts)
       Verification.new(response.body)
     end
   end

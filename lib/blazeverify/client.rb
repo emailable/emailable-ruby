@@ -21,6 +21,8 @@ module BlazeVerify
           elsif method == :post
             @client.post(endpoint, opts)
           end
+
+        raise Timeout::TimeoutError if response.status == 249
       rescue => e
         retry if self.class.should_retry?(e, tries)
 
