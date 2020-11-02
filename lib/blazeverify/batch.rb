@@ -3,6 +3,9 @@ module BlazeVerify
     attr_accessor :id
 
     def initialize(id_or_emails, callback: nil)
+      @id = nil
+      @status = nil
+
       if id_or_emails.is_a?(Array)
         @emails = id_or_emails
         @callback = callback
