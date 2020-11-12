@@ -7,6 +7,10 @@ require 'blazeverify/resources/api_resource'
 require 'blazeverify/resources/account'
 require 'blazeverify/resources/batch_status'
 require 'blazeverify/resources/verification'
+if defined?(ActiveModel)
+  require 'blazeverify/email_validator'
+  I18n.load_path += Dir.glob(File.expand_path('../../config/locales/**/*', __FILE__))
+end
 
 module BlazeVerify
   @max_network_retries = 1

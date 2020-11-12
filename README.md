@@ -5,6 +5,8 @@
 
 This is the official ruby wrapper for the Blaze Verify API.
 
+It also includes an Active Record (Rails) validator to verify email attributes.
+
 ## Documentation
 
 See the [Ruby API docs](https://blazeverify.com/docs/api/?ruby).
@@ -96,6 +98,34 @@ batch.status.reason_counts
 
 # returns true / false
 batch.complete?
+```
+
+### Active Record Validator
+
+Define a validator on an Active Record model for your email attribute(s).
+It'll validate the attribute only when it's present and has changed.
+
+#### Options
+
+* `smtp`, `timeout`: Passed directly to API as options.
+* `states`: An array of states you'd like to be valid.
+* `free`, `role`, `disposable`, `accept_all`: If you'd like any of these to be valid.
+
+```ruby
+validates :email, email: {
+  smtp: true, states: %i[deliverable risky unknown],
+  free: true, role: true, disposable: false, accept_all: true, timeout: 3
+}
+```
+
+#### Access Verification Result
+
+You can define an `attr_accessor` with the following format to gain
+access to the verification result.
+
+```ruby
+# [attribute_name]_verification_result
+attr_accessor :email_verification_result
 ```
 
 ## Development
