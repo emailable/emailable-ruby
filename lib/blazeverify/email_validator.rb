@@ -25,7 +25,7 @@ class EmailValidator < ActiveModel::EachValidator
     free = boolean_option_or_raise_error(:free, true)
     role = boolean_option_or_raise_error(:role, true)
     disposable = boolean_option_or_raise_error(:disposable, false)
-    accept_all = boolean_option_or_raise_error(:accept_all, false)
+    accept_all = boolean_option_or_raise_error(:accept_all, true)
 
     timeout = options.fetch(:timeout, 3)
     unless timeout.is_a?(Integer) && timeout > 1
@@ -36,7 +36,9 @@ class EmailValidator < ActiveModel::EachValidator
     return unless value.present?
     return unless record.changes[attribute].present?
 
-    ev = BlazeVerify.verify(value, timeout: timeout, smtp: smtp)
+    api_options = { timeout: timeout, smtp: smtp }
+    api_options[:accept_all] = true unless accept_all
+    ev = BlazeVerify.verify(value, api_options)
 
     result_accessor = "#{attribute}_verification_result"
     if record.respond_to?(result_accessor)
@@ -46,14 +48,13 @@ class EmailValidator < ActiveModel::EachValidator
     # if response is taking too long
     return unless ev.respond_to?(:state)
 
-    error ||= ev.state unless states.include?(ev.state.to_sym)
+    error ||= ev.state.to_sym unless states.include?(ev.state.to_sym)
     error ||= :free if ev.free? && !free
     error ||= :role if ev.role? && !role
     error ||= :disposable if ev.disposable? && !disposable
     error ||= :accept_all if ev.accept_all? && !accept_all
 
-    translation = I18n.t(error, :scope => 'blazeverify.validations.email')
-    record.errors.add(attribute, translation) if error
+    record.errors.add(attribute, error) if error
   rescue BlazeVerify::Error
     # silence errors
   end
