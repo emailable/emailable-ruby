@@ -36,4 +36,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'awesome_print'
   s.add_development_dependency 'minitest', '~> 5.0'
   s.add_development_dependency 'minitest-reporters'
+  s.add_development_dependency 'activemodel'
 end

@@ -32,7 +32,7 @@ class EmailValidator < ActiveModel::EachValidator
       record.instance_variable_set("@#{result_accessor}", ev)
     end
 
-    error ||= ev.state unless ev.state.to_sym.in?(states)
+    error ||= ev.state unless states.include?(ev.state.to_sym)
     error ||= :free if ev.free? && !free
     error ||= :role if ev.role? && !role
     error ||= :disposable if ev.disposable? && !disposable
