@@ -49,18 +49,14 @@ BlazeVerify.verify('jarrett@blazeverify.com')
 
 #### Slow Email Server Handling
 
-Some email servers are slow to respond. As a result the timeout may be reached
+Some email servers are slow to respond. As a result, the timeout may be reached
 before we are able to complete the verification process. If this happens, the
-verification will continue in the background on our servers. We recommend
-sleeping for at least one second and trying your request again. Re-requesting
-the same verification with the same options will not impact your credit
-allocation within a 5 minute window.
-
-```ruby
-{
-    "message" => "Your request is taking longer than normal. Please send your request again."
-}
-```
+verification will continue in the background on our servers, and a
+`BlazeVerify::TimeoutError` will be raised. We recommend sleeping for at least
+one second and trying your request again. Re-requesting the same verification
+with the same options will not impact your credit allocation within a 5 minute
+window. You can test this behavior using a test key and the special
+email `slow@example.com`.
 
 ### Batch Verification
 
@@ -108,7 +104,7 @@ It'll validate the attribute only when it's present and has changed.
 #### Options
 
 * `smtp`, `timeout`: Passed directly to API as options.
-* `states`: An array of states you'd like to be valid.
+* `states`: An array of states you'd like to be considered valid.
 * `free`, `role`, `disposable`, `accept_all`: If you'd like any of these to be valid.
 
 ```ruby

@@ -45,9 +45,6 @@ class EmailValidator < ActiveModel::EachValidator
       record.instance_variable_set("@#{result_accessor}", ev)
     end
 
-    # if response is taking too long
-    return unless ev.respond_to?(:state)
-
     error ||= ev.state.to_sym unless states.include?(ev.state.to_sym)
     error ||= :free if ev.free? && !free
     error ||= :role if ev.role? && !role

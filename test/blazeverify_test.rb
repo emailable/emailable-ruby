@@ -61,4 +61,10 @@ class BlazeVerifyTest < Minitest::Test
     end
   end
 
+  def test_slow_verification
+    assert_raises(BlazeVerify::TimeoutError) do
+      BlazeVerify.verify('slow@example.com')
+    end
+  end
+
 end
