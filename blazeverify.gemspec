@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   end
   s.require_paths = ['lib']
 
-  s.add_dependency 'faraday', '~> 0.13'
+  s.add_dependency 'faraday'
   s.add_dependency 'faraday_middleware'
   s.add_dependency 'net-http-persistent'
   s.add_development_dependency 'bundler'
@@ -36,4 +36,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'awesome_print'
   s.add_development_dependency 'minitest', '~> 5.0'
   s.add_development_dependency 'minitest-reporters'
+  s.add_development_dependency 'activemodel'
 end

@@ -1,0 +1,10 @@
+en:
+  errors:
+    messages:
+      undeliverable: is undeliverable
+      risky: is risky
+      unknown: is unknown
+      free: is a free address
+      role: is a role address
+      disposable: is a disposable address
+      accept_all: is an accept-all address
