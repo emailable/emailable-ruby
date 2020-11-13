@@ -5,6 +5,8 @@
 
 This is the official ruby wrapper for the Blaze Verify API.
 
+It also includes an Active Record (Rails) validator to verify email attributes.
+
 ## Documentation
 
 See the [Ruby API docs](https://blazeverify.com/docs/api/?ruby).
@@ -47,18 +49,14 @@ BlazeVerify.verify('jarrett@blazeverify.com')
 
 #### Slow Email Server Handling
 
-Some email servers are slow to respond. As a result the timeout may be reached
+Some email servers are slow to respond. As a result, the timeout may be reached
 before we are able to complete the verification process. If this happens, the
-verification will continue in the background on our servers. We recommend
-sleeping for at least one second and trying your request again. Re-requesting
-the same verification with the same options will not impact your credit
-allocation within a 5 minute window.
-
-```ruby
-{
-    "message" => "Your request is taking longer than normal. Please send your request again."
-}
-```
+verification will continue in the background on our servers, and a
+`BlazeVerify::TimeoutError` will be raised. We recommend sleeping for at least
+one second and trying your request again. Re-requesting the same verification
+with the same options will not impact your credit allocation within a 5 minute
+window. You can test this behavior using a test key and the special
+email `slow@example.com`.
 
 ### Batch Verification
 
@@ -96,6 +94,34 @@ batch.status.reason_counts
 
 # returns true / false
 batch.complete?
+```
+
+### Active Record Validator
+
+Define a validator on an Active Record model for your email attribute(s).
+It'll validate the attribute only when it's present and has changed.
+
+#### Options
+
+* `smtp`, `timeout`: Passed directly to API as options.
+* `states`: An array of states you'd like to be considered valid.
+* `free`, `role`, `disposable`, `accept_all`: If you'd like any of these to be valid.
+
+```ruby
+validates :email, email: {
+  smtp: true, states: %i[deliverable risky unknown],
+  free: true, role: true, disposable: false, accept_all: true, timeout: 3
+}
+```
+
+#### Access Verification Result
+
+You can define an `attr_accessor` with the following format to gain
+access to the verification result.
+
+```ruby
+# [attribute_name]_verification_result
+attr_accessor :email_verification_result
 ```
 
 ## Development
