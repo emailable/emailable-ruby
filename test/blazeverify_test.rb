@@ -51,7 +51,7 @@ class BlazeVerifyTest < Minitest::Test
     if %w(deliverable risky unknown).include?(result.state)
       assert result.first_name, 'John'
       assert result.last_name, 'Doe'
-      assert result.first_name, 'John Doe'
+      assert result.full_name, 'John Doe'
       assert result.gender, 'male'
     else
       assert_nil result.first_name
