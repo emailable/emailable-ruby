@@ -34,7 +34,7 @@ class EmailValidator < ActiveModel::EachValidator
 
     return if record.errors[attribute].present?
     return unless value.present?
-    return unless record.changes[attribute].present?
+    return unless record.send("#{attribute}_changed?")
 
     api_options = { timeout: timeout, smtp: smtp }
     api_options[:accept_all] = true unless accept_all
