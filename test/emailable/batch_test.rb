@@ -1,13 +1,13 @@
 require 'test_helper'
 
-module BlazeVerfiy
+module Emailable
   class BatchTest < Minitest::Test
 
     def setup
       sleep(1)
-      BlazeVerify.api_key = 'test_7aff7fc0142c65f86a00'
-      @emails = ['jarrett@blazeverify.com', 'support@blazeverify.com']
-      @batch = BlazeVerify::Batch.new(@emails)
+      Emailable.api_key = 'test_7aff7fc0142c65f86a00'
+      @emails = ['jarrett@emailable.com', 'support@emailable.com']
+      @batch = Emailable::Batch.new(@emails)
       @batch_id ||= @batch.verify
       sleep(1)
     end

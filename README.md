@@ -1,22 +1,22 @@
-# Blaze Verify Ruby Library
+# Emailable Ruby Library
 
-[![Build Status](https://travis-ci.com/blazeverify/blazeverify-ruby.svg)](https://travis-ci.com/blazeverify/blazeverify-ruby)
-[![Maintainability](https://api.codeclimate.com/v1/badges/2d74c69a9155109058a7/maintainability)](https://codeclimate.com/github/blazeverify/blazeverify-ruby/maintainability)
+[![Build Status](https://travis-ci.com/emailable/emailable-ruby.svg)](https://travis-ci.com/emailable/emailable-ruby)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2d74c69a9155109058a7/maintainability)](https://codeclimate.com/github/emailable/emailable-ruby/maintainability)
 
-This is the official ruby wrapper for the Blaze Verify API.
+This is the official ruby wrapper for the Emailable API.
 
 It also includes an Active Record (Rails) validator to verify email attributes.
 
 ## Documentation
 
-See the [Ruby API docs](https://blazeverify.com/docs/api/?ruby).
+See the [Ruby API docs](https://emailable.com/docs/api/?ruby).
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'blazeverify'
+gem 'emailable'
 ```
 
 And then execute:
@@ -25,26 +25,26 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install blazeverify
+    $ gem install emailable
 
 ## Usage
 
-The library needs to be configured with your account's API key which is available in your [Blaze Verify Dashboard](https://app.blazeverify.com/api). Set `BlazeVerify.api_key` to its value:
+The library needs to be configured with your account's API key which is available in your [Emailable Dashboard](https://app.emailable.com/api). Set `Emailable.api_key` to its value:
 
 ### Setup
 
 ```ruby
-require 'blazeverify'
+require 'emailable'
 
 # set api key
-BlazeVerify.api_key = 'live_...'
+Emailable.api_key = 'live_...'
 ```
 
 ### Verification
 
 ```ruby
 # verify an email address
-BlazeVerify.verify('jarrett@blazeverify.com')
+Emailable.verify('jarrett@emailable.com')
 ```
 
 #### Slow Email Server Handling
@@ -52,7 +52,7 @@ BlazeVerify.verify('jarrett@blazeverify.com')
 Some email servers are slow to respond. As a result, the timeout may be reached
 before we are able to complete the verification process. If this happens, the
 verification will continue in the background on our servers, and a
-`BlazeVerify::TimeoutError` will be raised. We recommend sleeping for at least
+`Emailable::TimeoutError` will be raised. We recommend sleeping for at least
 one second and trying your request again. Re-requesting the same verification
 with the same options will not impact your credit allocation within a 5 minute
 window. You can test this behavior using a test key and the special
@@ -63,12 +63,12 @@ email `slow@example.com`.
 #### Start a batch
 
 ```ruby
-emails = ['jarrett@blazeverify.com', 'support@blazeverify.com', ...]
-batch = BlazeVerify::Batch.new(emails)
+emails = ['jarrett@emailable.com', 'support@emailable.com', ...]
+batch = Emailable::Batch.new(emails)
 
 # you can optionally pass in a callback url that we'll POST to when the
 # batch is complete.
-batch = BlazeVerify::Batch.new(emails, callback: 'https://blazeverify.com/')
+batch = Emailable::Batch.new(emails, callback: 'https://emailable.com/')
 
 # start verifying the batch
 batch.verify
@@ -80,7 +80,7 @@ Calling `status` on a batch will return the status. It will contain the results 
 
 ```ruby
 id = '5cfcbfdeede34200693c4319'
-batch = BlazeVerify::Batch.new(id)
+batch = Emailable::Batch.new(id)
 
 # get status of batch
 batch.status
@@ -132,4 +132,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/blazeverify/blazeverify-ruby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/emailable/emailable-ruby.

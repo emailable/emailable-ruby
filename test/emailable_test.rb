@@ -1,10 +1,10 @@
 require 'test_helper'
 
-class BlazeVerifyTest < Minitest::Test
+class EmailableTest < Minitest::Test
 
   def setup
-    BlazeVerify.api_key = 'test_7aff7fc0142c65f86a00'
-    @result ||= BlazeVerify.verify('jarrett@blazeverify.com')
+    Emailable.api_key = 'test_7aff7fc0142c65f86a00'
+    @result ||= Emailable.verify('jarrett@emailable.com')
     sleep(0.25)
   end
 
@@ -23,31 +23,32 @@ class BlazeVerifyTest < Minitest::Test
   end
 
   def test_verification_role
-    result = BlazeVerify.verify('support@blazeverify.com')
+    result = Emailable.verify('support@emailable.com')
     assert result.role?
     refute @result.role?
   end
 
   def test_verification_did_you_mean
-    result = BlazeVerify.verify('jarrett@gmali.com')
-    assert result.did_you_mean, 'jarrett@gmail.com'
-    assert_nil @result.did_you_mean
+    result1 = Emailable.verify('jarrett@gmali.com')
+    result2 = Emailable.verify('jarrett@gmail.com')
+    assert result1.did_you_mean, 'jarrett@gmail.com'
+    assert_nil result2.did_you_mean
   end
 
   def test_verification_tag
-    result = BlazeVerify.verify('jarrett+marketing@blazeverify.com')
+    result = Emailable.verify('jarrett+marketing@emailable.com')
     assert result.tag == 'marketing'
   end
 
   def test_account
-    account = BlazeVerify.account
+    account = Emailable.account
 
     refute_nil account.owner_email
     refute_nil account.available_credits
   end
 
   def test_name_and_gender
-    result = BlazeVerify.verify('johndoe@blazeverify.com')
+    result = Emailable.verify('johndoe@emailable.com')
     if %w(deliverable risky unknown).include?(result.state)
       assert result.first_name, 'John'
       assert result.last_name, 'Doe'
@@ -62,8 +63,8 @@ class BlazeVerifyTest < Minitest::Test
   end
 
   def test_slow_verification
-    assert_raises(BlazeVerify::TimeoutError) do
-      BlazeVerify.verify('slow@example.com')
+    assert_raises(Emailable::TimeoutError) do
+      Emailable.verify('slow@example.com')
     end
   end
 

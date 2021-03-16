@@ -1,4 +1,4 @@
-module BlazeVerify
+module Emailable
   class Verification < APIResource
     attr_accessor :accept_all, :did_you_mean, :disposable, :domain, :duration,
                   :email, :free, :mx_record, :reason, :role, :score,
