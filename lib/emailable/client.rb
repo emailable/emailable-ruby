@@ -1,8 +1,8 @@
-module BlazeVerify
+module Emailable
   class Client
 
     def initialize
-      @client = Faraday.new('https://api.blazeverify.com/v1') do |f|
+      @client = Faraday.new('https://api.emailable.com/v1') do |f|
         f.request :url_encoded
         f.response :json, content_type: /\bjson$/
         f.adapter :net_http_persistent
@@ -13,7 +13,7 @@ module BlazeVerify
       begin
         tries ||= 0
 
-        @client.params[:api_key] = BlazeVerify.api_key
+        @client.params[:api_key] = Emailable.api_key
 
         response =
           if method == :get
@@ -49,7 +49,7 @@ module BlazeVerify
     end
 
     def self.should_retry?(error, num_retries)
-      return false if num_retries >= BlazeVerify.max_network_retries
+      return false if num_retries >= Emailable.max_network_retries
 
       # Retry on timeout-related problems (either on open or read).
       return true if error.is_a?(Faraday::TimeoutError)

@@ -1,4 +1,4 @@
-# ActiveRecord validator for validating an email address with Blaze Verify
+# ActiveRecord validator for validating an email address with Emailable
 #
 # Usage:
 #   validates :email, presence: true, email: {
@@ -34,11 +34,11 @@ class EmailValidator < ActiveModel::EachValidator
 
     return if record.errors[attribute].present?
     return unless value.present?
-    return unless record.send("#{attribute}_changed?")
+    return unless record.changes.include?(attribute.to_sym)
 
     api_options = { timeout: timeout, smtp: smtp }
     api_options[:accept_all] = true unless accept_all
-    ev = BlazeVerify.verify(value, api_options)
+    ev = Emailable.verify(value, api_options)
 
     result_accessor = "#{attribute}_verification_result"
     if record.respond_to?(result_accessor)
@@ -52,7 +52,7 @@ class EmailValidator < ActiveModel::EachValidator
     error ||= :accept_all if ev.accept_all? && !accept_all
 
     record.errors.add(attribute, error) if error
-  rescue BlazeVerify::Error
+  rescue Emailable::Error
     # silence errors
   end
 

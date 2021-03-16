@@ -28,7 +28,7 @@ class EmailValidatorTest < Minitest::Test
   end
 
   def setup
-    BlazeVerify.api_key = 'test_7aff7fc0142c65f86a00'
+    Emailable.api_key = 'test_7aff7fc0142c65f86a00'
     sleep(0.25)
   end
 

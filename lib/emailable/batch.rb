@@ -1,4 +1,4 @@
-module BlazeVerify
+module Emailable
   class Batch
     attr_accessor :id
 
@@ -12,7 +12,7 @@ module BlazeVerify
         raise ArgumentError, 'expected an array of emails or batch id'
       end
 
-      @client = BlazeVerify::Client.new
+      @client = Emailable::Client.new
     end
 
     def verify

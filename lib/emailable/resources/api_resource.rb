@@ -1,4 +1,4 @@
-module BlazeVerify
+module Emailable
   class APIResource
 
     def initialize(attributes = {})
