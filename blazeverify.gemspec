@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
     "documentation_uri" => "https://docs.blazeverify.com/?ruby",
     "source_code_uri" => "https://github.com/blazeverify/blazeverify-ruby"
   }
+  s.post_install_message = "Blaze Verify is now Emailable! Please switch to using the Emailable client library: https://emailable.com/docs/api?ruby"
 
   s.files = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- test/*`.split("\n")
