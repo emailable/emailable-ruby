@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
     "documentation_uri" => "https://docs.emailable.com/?ruby",
     "source_code_uri" => "https://github.com/emailable/emailable-ruby"
   }
-  s.post_install_message = "Emailable is now Emailable! Please switch to using the Emailable client library: https://emailable.com/docs/api?ruby"
 
   s.files = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- test/*`.split("\n")
