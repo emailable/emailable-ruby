@@ -4,15 +4,19 @@ module Emailable
 
     def initialize(id_or_emails, callback: nil)
       if id_or_emails.is_a?(Array)
+        @id = nil
         @emails = id_or_emails
         @callback = callback
       elsif id_or_emails.is_a?(String)
         @id = id_or_emails
+        @emails = nil
+        @callback = nil
       else
         raise ArgumentError, 'expected an array of emails or batch id'
       end
 
       @client = Emailable::Client.new
+      @status = nil
     end
 
     def verify

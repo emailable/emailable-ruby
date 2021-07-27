@@ -1,7 +1,6 @@
-require 'faraday'
-require 'faraday_middleware'
 require 'emailable/version'
 require 'emailable/client'
+require 'emailable/response'
 require 'emailable/batch'
 require 'emailable/resources/api_resource'
 require 'emailable/resources/account'
@@ -14,9 +13,13 @@ end
 
 module Emailable
   @max_network_retries = 1
+  @open_timeout = 30
+  @read_timeout = 60
+  @write_timeout = 30
 
   class << self
-    attr_accessor :api_key, :max_network_retries
+    attr_accessor :api_key, :max_network_retries, :open_timeout, :read_timeout,
+      :write_timeout
   end
 
   module_function
