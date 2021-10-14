@@ -1,6 +1,6 @@
 # Emailable Ruby Library
 
-[![Build Status](https://travis-ci.com/emailable/emailable-ruby.svg)](https://travis-ci.com/emailable/emailable-ruby)
+[![Build Status](https://app.travis-ci.com/emailable/emailable-ruby.svg)](https://travis-ci.com/emailable/emailable-ruby)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2d74c69a9155109058a7/maintainability)](https://codeclimate.com/github/emailable/emailable-ruby/maintainability)
 
 This is the official ruby wrapper for the Emailable API.
