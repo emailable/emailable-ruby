@@ -19,20 +19,20 @@ module Emailable
       @status = nil
     end
 
-    def verify
+    def verify(simulate: nil)
       return @id unless @id.nil?
 
-      opts = { emails: @emails.join(','), url: @callback }
+      opts = { emails: @emails.join(','), url: @callback, simulate: simulate }
       response = @client.request(:post, 'batch', opts)
 
       @id = response.body['id']
     end
 
-    def status
+    def status(simulate: nil)
       return nil unless @id
       return @status if @status
 
-      response = @client.request(:get, 'batch', { id: @id })
+      response = @client.request(:get, 'batch', { id: @id, simulate: simulate })
       bs = BatchStatus.new(response.body)
       @status = bs if bs.complete?
 
