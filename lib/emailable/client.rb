@@ -1,5 +1,15 @@
 module Emailable
   class Client
+    ERRORS = {
+      400 => BadRequestError,
+      401 => UnauthorizedError,
+      402 => PaymentRequiredError,
+      403 => ForbiddenError,
+      404 => NotFoundError,
+      429 => TooManyRequestsError,
+      500 => InternalServerError,
+      503 => ServiceUnavailableError
+    }.freeze
 
     def initialize
       @base_url = 'https://api.emailable.com/v1'
@@ -33,22 +43,7 @@ module Emailable
       status = response.status
       return response if status.between?(200, 299)
 
-      error_attributes = {
-        message: response.body['message'],
-        code: status
-      }
-      error_map = {
-        '400' => BadRequestError,
-        '401' => UnauthorizedError,
-        '402' => PaymentRequiredError,
-        '403' => ForbiddenError,
-        '404' => NotFoundError,
-        '429' => TooManyRequestsError,
-        '500' => InternalServerError,
-        '503' => ServiceUnavailableError
-      }
-
-      raise error_map[status.to_s].new(error_attributes)
+      raise ERRORS[status].new(response.body['message'])
     end
 
     private
