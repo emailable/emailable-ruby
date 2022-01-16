@@ -28,11 +28,11 @@ module Emailable
       @id = response.body['id']
     end
 
-    def status(simulate: nil)
+    def status(simulate: nil, partial: nil)
       return nil unless @id
       return @status if @status
 
-      response = @client.request(:get, 'batch', { id: @id, simulate: simulate })
+      response = @client.request(:get, 'batch', { id: @id, simulate: simulate, partial: partial })
       bs = BatchStatus.new(response.body)
       @status = bs if bs.complete?
 
