@@ -1,5 +1,3 @@
-require 'json'
-
 module Emailable
   class APIResource
 
@@ -14,7 +12,7 @@ module Emailable
         [e.to_s.delete('@').to_sym, instance_variable_get(e)]
       end.to_h
     end
-    
+
     alias_method :to_hash, :to_h
 
     def to_json
@@ -22,9 +20,9 @@ module Emailable
     end
 
     def inspect
-      fmtted_email = @email ? " #{@email}" : ''
-      "#<#{self.class}:0x#{(object_id << 1).to_s(16)}#{fmtted_email}> JSON: " +
+      "#<#{self.class}:0x#{(object_id << 1).to_s(16)}> JSON: " +
         JSON.pretty_generate(to_h)
     end
+
   end
 end

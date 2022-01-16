@@ -1,4 +1,8 @@
+require 'net/http'
+require 'json'
+
 require 'emailable/version'
+require 'emailable/errors'
 require 'emailable/client'
 require 'emailable/response'
 require 'emailable/batch'
@@ -33,9 +37,7 @@ module Emailable
     response = client.request(:get, 'verify', opts)
 
     if response.status == 249
-      raise Emailable::TimeoutError.new(
-        code: response.status, message: response.body
-      )
+      raise Emailable::TimeoutError.new(response.body)
     else
       Verification.new(response.body)
     end
@@ -47,22 +49,4 @@ module Emailable
     Account.new(response.body)
   end
 
-
-  class Error < StandardError
-    attr_accessor :code, :message
-
-    def initialize(code: nil, message: nil)
-      @code = code
-      @message = message
-    end
-  end
-  class BadRequestError < Error; end
-  class UnauthorizedError < Error; end
-  class PaymentRequiredError < Error; end
-  class ForbiddenError < Error; end
-  class NotFoundError < Error; end
-  class TooManyRequestsError < Error; end
-  class InternalServerError < Error; end
-  class ServiceUnavailableError < Error; end
-  class TimeoutError < Error; end
 end
