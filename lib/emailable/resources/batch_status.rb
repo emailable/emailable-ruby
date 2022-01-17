@@ -4,7 +4,7 @@ module Emailable
       :processed, :total
 
     def complete?
-      !emails.nil?
+      message.include?('completed')
     end
   end
 end
