@@ -22,8 +22,7 @@ module Emailable
     end
 
     def test_batch_complete
-      complete = @batch.complete?
-      assert complete == true || complete == false
+      assert @batch.complete?
     end
 
   end
