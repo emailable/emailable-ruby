@@ -38,7 +38,7 @@ class EmailValidator < ActiveModel::EachValidator
 
     api_options = { timeout: timeout, smtp: smtp }
     api_options[:accept_all] = true unless accept_all
-    ev = Emailable.verify(value, **api_options)
+    ev = Emailable.verify(value, api_options)
 
     result_accessor = "#{attribute}_verification_result"
     if record.respond_to?(result_accessor)

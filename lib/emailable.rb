@@ -28,13 +28,11 @@ module Emailable
 
   module_function
 
-  def verify(email, smtp: nil, accept_all: nil, timeout: nil)
-    opts = {
-      email: email, smtp: smtp, accept_all: accept_all, timeout: timeout
-    }
+  def verify(email, parameters = {})
+    parameters[:email] = email
 
     client = Emailable::Client.new
-    response = client.request(:get, 'verify', opts)
+    response = client.request(:get, 'verify', parameters)
 
     if response.status == 249
       raise Emailable::TimeoutError.new(response.body)
