@@ -29,7 +29,9 @@ Or install it yourself as:
 
 ## Usage
 
-The library needs to be configured with your account's API key which is available in your [Emailable Dashboard](https://app.emailable.com/api). Set `Emailable.api_key` to its value:
+The library needs to be configured with your account's API key which is
+available in your [Emailable Dashboard](https://app.emailable.com/api). Set
+`Emailable.api_key` to its value:
 
 ### Setup
 
@@ -47,6 +49,9 @@ Emailable.api_key = 'live_...'
 Emailable.verify('jarrett@emailable.com')
 ```
 
+All supported parameters for the verify endpoint can be passed in as hash
+arguments to the `verify` method.
+
 #### Slow Email Server Handling
 
 Some email servers are slow to respond. As a result, the timeout may be reached
@@ -60,23 +65,30 @@ email `slow@example.com`.
 
 ### Batch Verification
 
+First, create an `Emailable::Batch` object. Then, call the `verify` method to
+start the batch. All supported parameters for the batch verification endpoint
+can be passed in as hash arguments to the `verify` method.
+
 #### Start a batch
 
 ```ruby
 emails = ['jarrett@emailable.com', 'support@emailable.com', ...]
 batch = Emailable::Batch.new(emails)
 
-# you can optionally pass in a callback url that we'll POST to when the
-# batch is complete.
-batch = Emailable::Batch.new(emails, callback: 'https://emailable.com/')
-
 # start verifying the batch
 batch.verify
+
+# you can optionally pass in a callback url that we'll POST to when the batch
+# is complete.
+batch.verify(url: 'https://emailable.com/')
 ```
 
 #### Get the status / results of a batch
 
-Calling `status` on a batch will return the status. It will contain the results as well once complete. You can also `results` to get just the results.
+Calling `status` on a batch will return the status. It will contain the results
+as well once complete. You can also `results` to get just the results. All
+supported parameters for the status endpoint can be passed in as hash
+arguments to the `status` method.
 
 ```ruby
 id = '5cfcbfdeede34200693c4319'
@@ -84,6 +96,9 @@ batch = Emailable::Batch.new(id)
 
 # get status of batch
 batch.status
+
+# get the status of a batch, with partial results if the batch is incomplete
+batch.status(partial: true)
 
 # gets the results
 batch.status.emails
@@ -126,10 +141,17 @@ attr_accessor :email_verification_result
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run
+`rake test` to run the tests. You can also run `bin/console` for an interactive
+prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`. To
+release a new version, update the version number in `version.rb`, and then run
+`bundle exec rake release`, which will create a git tag for the version, push
+git commits and tags, and push the `.gem` file to
+[rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/emailable/emailable-ruby.
+Bug reports and pull requests are welcome on GitHub at
+https://github.com/emailable/emailable-ruby.
