@@ -86,9 +86,8 @@ batch.verify(url: 'https://emailable.com/')
 #### Get the status / results of a batch
 
 Calling `status` on a batch will return the status. It will contain the results
-as well once complete. You can also `results` to get just the results. All
-supported parameters for the status endpoint can be passed in as hash
-arguments to the `status` method.
+as well once complete. All supported parameters for the status endpoint can be
+passed in as hash arguments to the `status` method.
 
 ```ruby
 id = '5cfcbfdeede34200693c4319'
