@@ -1,5 +1,6 @@
 # Emailable Ruby Library
 
+[![Gem Version](https://badge.fury.io/rb/emailable.svg)](https://rubygems.org/gems/emailable)
 [![Build Status](https://app.travis-ci.com/emailable/emailable-ruby.svg)](https://app.travis-ci.com/emailable/emailable-ruby)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e7eef54e491adec95e6d/maintainability)](https://codeclimate.com/github/emailable/emailable-ruby/maintainability)
 
