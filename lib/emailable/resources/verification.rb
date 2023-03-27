@@ -1,11 +1,11 @@
 module Emailable
   class Verification < APIResource
     attr_accessor :accept_all, :did_you_mean, :disposable, :domain, :duration,
-                  :email, :free, :mx_record, :reason, :role, :score,
-                  :smtp_provider, :state, :tag, :user, :first_name, :last_name,
-                  :full_name, :gender
+                  :email, :free, :mailbox_full, :mx_record, :no_reply, :reason,
+                  :role, :score, :smtp_provider, :state, :tag, :user,
+                  :first_name, :last_name, :full_name, :gender
 
-    %w(accept_all disposable free role).each do |method|
+    %w(accept_all disposable free role mailbox_full no_reply).each do |method|
       define_method("#{method}?") do
         instance_variable_get "@#{method}"
       end
