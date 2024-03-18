@@ -5,7 +5,7 @@ class EmailValidatorTest < Minitest::Test
 
   def user_class(
     smtp: true, states: %i[deliverable risky unknown], free: true, role: true,
-    accept_all: true, disposable: true, timeout: 3
+    accept_all: true, disposable: true, timeout: 3, **options
   )
     Class.new do
       include ActiveModel::Model
@@ -15,7 +15,7 @@ class EmailValidatorTest < Minitest::Test
         smtp: smtp, states: states,
         free: free, role: role, disposable: disposable, accept_all: accept_all,
         timeout: timeout
-      }
+      }.merge(options)
 
       def self.name
         'TestClass'
@@ -81,6 +81,17 @@ class EmailValidatorTest < Minitest::Test
     assert !valid_user.valid?
     assert_raises(ArgumentError) { invalid_user1.valid? }
     assert_raises(ArgumentError) { invalid_user2.valid? }
+  end
+
+  def test_custom_option
+    message = 'invalid message'
+    valid_user = user_class(message: message, reportable: true)
+                   .new(email: 'undeliverable@example.com')
+
+    assert !valid_user.valid?
+    assert valid_user.errors[:email].present?
+    assert valid_user.errors[:email].first == message
+    assert valid_user.errors.where(:email, reportable: true).present?
   end
 
 end
