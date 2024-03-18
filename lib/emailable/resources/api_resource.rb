@@ -15,8 +15,8 @@ module Emailable
 
     alias_method :to_hash, :to_h
 
-    def to_json
-      JSON.generate(to_h)
+    def to_json(*args)
+      JSON.generate(to_h, *args)
     end
 
     def inspect

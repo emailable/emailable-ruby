@@ -27,7 +27,7 @@ module Emailable
     end
 
     def status(parameters = {})
-      return nil unless @id
+      return unless @id
       return @status if @status
 
       parameters[:id] = @id
