@@ -52,8 +52,9 @@ class EmailValidator < ActiveModel::EachValidator
     error ||= :accept_all if ev.accept_all? && !accept_all
 
     if error
-      error_options = options.except(:smtp, :states, :free, :role,
-                                     :disposable, :accept_all, :timeout)
+      error_options = options.except(
+        :smtp, :states, :free, :role, :disposable, :accept_all, :timeout
+      )
       record.errors.add(attribute, error, **error_options)
     end
   rescue Emailable::Error

@@ -85,13 +85,14 @@ class EmailValidatorTest < Minitest::Test
 
   def test_custom_option
     message = 'invalid message'
-    valid_user = user_class(message: message, reportable: true)
-                   .new(email: 'undeliverable@example.com')
+    invalid_user = user_class(message: message, reportable: true).new(
+      email: 'undeliverable@example.com'
+    )
 
-    assert !valid_user.valid?
-    assert valid_user.errors[:email].present?
-    assert valid_user.errors[:email].first == message
-    assert valid_user.errors.where(:email, reportable: true).present?
+    refute invalid_user.valid?
+    assert invalid_user.errors[:email].present?
+    assert_equal message, invalid_user.errors[:email].first
+    assert invalid_user.errors.where(:email, reportable: true).present?
   end
 
 end
