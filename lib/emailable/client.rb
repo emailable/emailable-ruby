@@ -35,7 +35,7 @@ module Emailable
 
         response = Response.new(http_response)
       rescue => e
-        retry if (tries -= 1) > 0 && self.class.should_retry?(e, tries)
+        retry if (tries -= 1) > 0 && should_retry?(e, tries)
 
         raise e
       end
@@ -70,7 +70,7 @@ module Emailable
       connection
     end
 
-    def self.should_retry?(error, num_retries)
+    def should_retry?(error, num_retries)
       return false if num_retries >= Emailable.max_network_retries
 
       case error

@@ -24,7 +24,7 @@ class EmailableTest < Minitest::Test
 
   def test_verification_tag
     result = Emailable.verify('jarrett+marketing@emailable.com')
-    assert result.tag == 'marketing'
+    assert_equal 'marketing', result.tag
   end
 
   def test_account
@@ -49,33 +49,27 @@ class EmailableTest < Minitest::Test
   end
 
   def test_accept_all?
-    result = Emailable.verify('accept-all@example.com')
-    assert result.accept_all?
+    assert Emailable.verify('accept-all@example.com').accept_all?
   end
 
   def test_disposable?
-    result = Emailable.verify('disposable@example.com')
-    assert result.disposable?
+    assert Emailable.verify('disposable@example.com').disposable?
   end
 
   def test_free?
-    result = Emailable.verify('free@example.com')
-    assert result.free?
+    assert Emailable.verify('free@example.com').free?
   end
 
   def test_role?
-    result = Emailable.verify('role@example.com')
-    assert result.role?
+    assert Emailable.verify('role@example.com').role?
   end
 
   def test_mailbox_full?
-    result = Emailable.verify('mailbox-full@example.com')
-    assert result.mailbox_full?
+    assert Emailable.verify('mailbox-full@example.com').mailbox_full?
   end
 
   def test_no_reply?
-    result = Emailable.verify('no-reply@example.com')
-    assert result.no_reply?
+    assert Emailable.verify('no-reply@example.com').no_reply?
   end
 
   def test_slow_verification

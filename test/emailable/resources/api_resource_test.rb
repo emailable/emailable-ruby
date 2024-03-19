@@ -14,7 +14,7 @@ module Emailable
       def test_init
         assert_equal 'abc', @e.foo
         assert_equal 123,   @e.bar
-        assert_equal true,  @e.baz
+        assert @e.baz
       end
 
       def test_to_h
