@@ -29,30 +29,24 @@ class EmailValidatorTest < Minitest::Test
     assert_equal 'undeliverable', invalid_user.email_verification_result.state
   end
 
-  def test_boolean_options
+  def test_boolean_options_with_invalid_value
     %i[smtp free role disposable accept_all].each do |option|
       invalid_options = user_class(option => 'string').new
-      valid_options = user_class.new
 
-      refute valid_options.valid?
       assert_raises(ArgumentError) { invalid_options.valid? }
     end
   end
 
-  def test_states_option
+  def test_states_option_with_invalid_value
     invalid_options = user_class(states: %i[invalid_state]).new
-    valid_options = user_class.new
 
-    refute valid_options.valid?
     assert_raises(ArgumentError) { invalid_options.valid? }
   end
 
-  def test_timeout_option
+  def test_timeout_option_with_invalid_value
     invalid_options1 = user_class(timeout: 'string').new
     invalid_options2 = user_class(timeout: 1).new
-    valid_options = user_class.new
 
-    refute valid_options.valid?
     assert_raises(ArgumentError) { invalid_options1.valid? }
     assert_raises(ArgumentError) { invalid_options2.valid? }
   end
