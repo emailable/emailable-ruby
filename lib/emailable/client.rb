@@ -16,19 +16,22 @@ module Emailable
       @connection = create_connection(URI(@base_url))
     end
 
-    def request(method, endpoint, params = {})
+    def request(method, endpoint, params = {}, api_key: nil, access_token: nil)
+      uri = URI("#{@base_url}/#{endpoint}")
+      request_options = {
+        'Authorization': "Bearer #{Emailable.api_key || api_key || access_token}",
+        'Content-Type': 'application/json'
+      }
+
       begin
         tries ||= 3
-
-        uri = URI("#{@base_url}/#{endpoint}")
-        params[:api_key] = Emailable.api_key
-
         http_response =
           if method == :get
-            uri.query = URI.encode_www_form(params)
-            @connection.get(uri)
+            request = Net::HTTP::Get.new(uri, request_options)
+            request.set_form_data(params)
+            @connection.request(request)
           elsif method == :post
-            request = Net::HTTP::Post.new(uri, 'Content-Type': 'application/json')
+            request = Net::HTTP::Post.new(uri, request_options)
             request.body = params.to_json
             @connection.request(request)
           end
@@ -65,7 +68,7 @@ module Emailable
       if connection.respond_to?(:write_timeout=)
         connection.write_timeout = Emailable.write_timeout
       end
-      connection.use_ssl = uri.scheme == "https"
+      connection.use_ssl = uri.scheme == 'https'
 
       connection
     end

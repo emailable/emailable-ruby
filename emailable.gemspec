@@ -15,9 +15,9 @@ Gem::Specification.new do |s|
   s.email = 'support@emailable.com'
   s.license = 'MIT'
   s.metadata = {
-    "bug_tracker_uri" => "https://github.com/emailable/emailable-ruby/issues",
-    "documentation_uri" => "https://docs.emailable.com/?ruby",
-    "source_code_uri" => "https://github.com/emailable/emailable-ruby"
+    'bug_tracker_uri' => 'https://github.com/emailable/emailable-ruby/issues',
+    'documentation_uri' => 'https://emailable.com/docs/api/?ruby',
+    'source_code_uri' => 'https://github.com/emailable/emailable-ruby'
   }
 
   s.files = `git ls-files`.split("\n")
@@ -29,8 +29,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake', '~> 13.0'
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'awesome_print'
+  s.add_development_dependency 'amazing_print'
   s.add_development_dependency 'minitest', '~> 5.0'
   s.add_development_dependency 'minitest-reporters'
   s.add_development_dependency 'activemodel'

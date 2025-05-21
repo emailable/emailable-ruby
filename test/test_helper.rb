@@ -1,6 +1,6 @@
+require 'active_model'
 require 'emailable'
 
-require 'pry'
 require 'minitest/autorun'
 require 'minitest/reporters'
 Minitest::Reporters.use! [

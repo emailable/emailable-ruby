@@ -1,4 +1,3 @@
-require 'active_model'
 require 'test_helper'
 
 class EmailValidatorTest < Minitest::Test

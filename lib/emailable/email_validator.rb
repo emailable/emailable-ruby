@@ -18,7 +18,7 @@ class EmailValidator < ActiveModel::EachValidator
     states = options.fetch(:states, %i(deliverable risky unknown))
     allowed_states = %i[deliverable undeliverable risky unknown]
     unless (states - allowed_states).empty?
-      raise ArgumentError, ":states must be an array of symbols containing "\
+      raise ArgumentError, ':states must be an array of symbols containing '\
         "any or all of :#{allowed_states.join(', :')}"
     end
 
@@ -29,7 +29,7 @@ class EmailValidator < ActiveModel::EachValidator
 
     timeout = options.fetch(:timeout, 3)
     unless timeout.is_a?(Integer) && timeout > 1
-      raise ArgumentError, ":timeout must be an Integer greater than 1"
+      raise ArgumentError, ':timeout must be an Integer greater than 1'
     end
 
     return if record.errors[attribute].present?
