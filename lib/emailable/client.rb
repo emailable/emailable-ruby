@@ -16,7 +16,10 @@ module Emailable
       @connection = create_connection(URI(@base_url))
     end
 
-    def request(method, endpoint, params = {}, api_key: nil, access_token: nil)
+    def request(method, endpoint, params = {})
+      api_key = params.delete(:api_key)
+      access_token = params.delete(:access_token)
+
       uri = URI("#{@base_url}/#{endpoint}")
       request_options = {
         'Authorization': "Bearer #{Emailable.api_key || api_key || access_token}",
