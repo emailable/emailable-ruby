@@ -32,21 +32,23 @@ Or install it yourself as:
 
 ### Authentication
 
-The Emailable API can be authenticated with in a few ways. You will need an API key or an Access Token to authenticate. API keys are available in your  [Emailable Dashboard](https://app.emailable.com/api).
+The Emailable API requires either an API key or an access token for
+authentication. API keys can be created and managed in the
+[Emailable Dashboard](https://app.emailable.com/api).
 
-The library can be configured globally with your account's API key
+An API key can be set globally for the Emailable client:
 
 ```ruby
-Emailable.api_key = 'your_api_key
+Emailable.api_key = 'your_api_key'
 ```
 
-Alternatively, you can pass an `api_key` or an `access_token` at request time to any of the endpoint methods.
+Or, you can specify an `api_key` or an `access_token` with each request:
 
 ```ruby
 # set api_key at request time
 Emailable.verify(api_key: 'your_api_key')
 
-# set access_token at request_time
+# set access_token at request time
 Emailable.verify(access_token: 'your_access_token')
 ```
 
