@@ -32,7 +32,7 @@ module Emailable
     parameters[:email] = email
 
     client = Emailable::Client.new
-    response = client.request(:get, 'verify', parameters)
+    response = client.request(:post, 'verify', parameters)
 
     if response.status == 249
       raise Emailable::TimeoutError.new(response.body)
@@ -41,9 +41,9 @@ module Emailable
     end
   end
 
-  def account
+  def account(parameters = {})
     client = Emailable::Client.new
-    response = client.request(:get, 'account')
+    response = client.request(:get, 'account', parameters)
     Account.new(response.body)
   end
 

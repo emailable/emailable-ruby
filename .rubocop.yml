@@ -1,4 +1,2 @@
-inherit_from: .rubocop_todo.yml
-
 inherit_gem:
   rubocop-cache-ventures: rubocop.yml
