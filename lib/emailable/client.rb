@@ -22,7 +22,7 @@ module Emailable
 
       uri = URI("#{@base_url}/#{endpoint}")
       headers = {
-        'Authorization': "Bearer #{Emailable.api_key || api_key || access_token}",
+        'Authorization': "Bearer #{api_key || access_token || Emailable.api_key}",
         'Content-Type': 'application/json'
       }
 

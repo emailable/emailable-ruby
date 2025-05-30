@@ -24,4 +24,10 @@ class AuthenticationTest < Minitest::Test
     refute_nil Emailable::Batch.new(bid).status(api_key: @api_key).id
   end
 
+  def test_request_time_authentication_takes_priority_over_global
+    Emailable.api_key = 'invalid_api_key'
+
+    refute_nil Emailable.verify(@email, api_key: @api_key).domain
+  end
+
 end
