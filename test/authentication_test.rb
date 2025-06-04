@@ -30,4 +30,12 @@ class AuthenticationTest < Minitest::Test
     refute_nil Emailable.verify(@email, api_key: @api_key).domain
   end
 
+  def test_does_not_modify_params
+    params = { api_key: @api_key, email: @email }
+    Emailable.verify(params[:email], params)
+
+    assert_equal @api_key, params[:api_key]
+    assert_equal @email, params[:email]
+  end
+
 end
