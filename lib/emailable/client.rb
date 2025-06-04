@@ -17,8 +17,9 @@ module Emailable
     end
 
     def request(method, endpoint, params = {})
-      api_key = params.delete(:api_key)
-      access_token = params.delete(:access_token)
+      params_copy = params.dup
+      api_key = params_copy.delete(:api_key)
+      access_token = params_copy.delete(:access_token)
 
       uri = URI("#{@base_url}/#{endpoint}")
       headers = {
@@ -30,12 +31,12 @@ module Emailable
         tries ||= 3
         http_response =
           if method == :get
-            uri.query = URI.encode_www_form(params) unless params.empty?
+            uri.query = URI.encode_www_form(params_copy) if params_copy.any?
             request = Net::HTTP::Get.new(uri, headers)
             @connection.request(request)
           elsif method == :post
             request = Net::HTTP::Post.new(uri, headers)
-            request.body = params.to_json
+            request.body = params_copy.to_json
             @connection.request(request)
           end
 
