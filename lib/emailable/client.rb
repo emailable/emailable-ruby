@@ -31,9 +31,7 @@ module Emailable
         tries ||= 3
         http_response =
           if method == :get
-            unless params_copy.empty?
-              uri.query = URI.encode_www_form(params_copy)
-            end
+            uri.query = URI.encode_www_form(params_copy) if params_copy.any?
             request = Net::HTTP::Get.new(uri, headers)
             @connection.request(request)
           elsif method == :post
