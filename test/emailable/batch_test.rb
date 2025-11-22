@@ -2,7 +2,6 @@ require 'test_helper'
 
 module Emailable
   class BatchTest < Minitest::Test
-
     def setup
       Emailable.api_key = 'test_7aff7fc0142c65f86a00'
       @emails = ['jarrett@emailable.com', 'support@emailable.com']
@@ -22,6 +21,5 @@ module Emailable
     def test_batch_complete
       assert @batch.complete?
     end
-
   end
 end
