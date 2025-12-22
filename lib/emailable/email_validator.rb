@@ -11,15 +11,14 @@
 #   attr_accessor :email_verification_result
 #
 class EmailValidator < ActiveModel::EachValidator
-
   def validate_each(record, attribute, value)
     smtp = boolean_option_or_raise_error(:smtp, true)
 
     states = options.fetch(:states, %i(deliverable risky unknown))
     allowed_states = %i[deliverable undeliverable risky unknown]
     unless (states - allowed_states).empty?
-      raise ArgumentError, ':states must be an array of symbols containing '\
-        "any or all of :#{allowed_states.join(', :')}"
+      raise ArgumentError, ':states must be an array of symbols containing ' \
+                           "any or all of :#{allowed_states.join(', :')}"
     end
 
     free = boolean_option_or_raise_error(:free, true)
@@ -71,5 +70,4 @@ class EmailValidator < ActiveModel::EachValidator
 
     option
   end
-
 end

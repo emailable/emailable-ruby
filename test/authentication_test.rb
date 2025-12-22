@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class AuthenticationTest < Minitest::Test
-
   def setup
     @api_key = 'test_7aff7fc0142c65f86a00'
     @email = 'jarrett@emailable.com'
@@ -37,5 +36,4 @@ class AuthenticationTest < Minitest::Test
     assert_equal @api_key, params[:api_key]
     assert_equal @email, params[:email]
   end
-
 end

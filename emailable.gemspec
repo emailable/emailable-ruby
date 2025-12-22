@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name = 'emailable'
   s.version = Emailable::VERSION
   s.summary = 'Ruby bindings for the Emailable API'
-  s.description = 'Email Verification that’s astonishingly easy and low-cost. '\
+  s.description = 'Email Verification that’s astonishingly easy and low-cost. ' \
                   'See https://emailable.com for details.'
   s.homepage = 'https://emailable.com'
   s.author = 'Emailable'

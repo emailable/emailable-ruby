@@ -23,7 +23,7 @@ module Emailable
 
   class << self
     attr_accessor :api_key, :max_network_retries, :open_timeout, :read_timeout,
-      :write_timeout
+                  :write_timeout
   end
 
   module_function
@@ -46,5 +46,4 @@ module Emailable
     response = client.request(:get, 'account', parameters)
     Account.new(response.body)
   end
-
 end

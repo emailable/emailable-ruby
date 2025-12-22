@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EmailValidatorTest < Minitest::Test
-
   def setup
     Emailable.api_key = 'test_7aff7fc0142c65f86a00'
   end
@@ -70,6 +69,7 @@ class EmailValidatorTest < Minitest::Test
   )
     Class.new do
       include ActiveModel::Model
+
       attr_accessor :email, :email_verification_result
 
       validates :email, presence: true, email: {
@@ -88,5 +88,4 @@ class EmailValidatorTest < Minitest::Test
       end
     end
   end
-
 end

@@ -1,6 +1,5 @@
 module Emailable
   class APIResource
-
     def initialize(attributes = {})
       attributes.each do |attr, value|
         instance_variable_set("@#{attr}", value)
@@ -23,6 +22,5 @@ module Emailable
       "#<#{self.class}:0x#{(object_id << 1).to_s(16)}> JSON: " +
         JSON.pretty_generate(to_h)
     end
-
   end
 end

@@ -106,6 +106,5 @@ module Emailable
         false
       end
     end
-
   end
 end

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EmailableTest < Minitest::Test
-
   def setup
     Emailable.api_key = 'test_7aff7fc0142c65f86a00'
   end
@@ -77,5 +76,4 @@ class EmailableTest < Minitest::Test
       Emailable.verify('slow@example.com')
     end
   end
-
 end

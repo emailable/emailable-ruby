@@ -44,6 +44,5 @@ module Emailable
         assert_equal correct, output
       end
     end
-
   end
 end

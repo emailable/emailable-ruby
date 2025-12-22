@@ -49,6 +49,5 @@ module Emailable
       "#<#{self.class}:0x#{(object_id << 1).to_s(16)}> JSON: " +
         JSON.pretty_generate(ivars)
     end
-
   end
 end
