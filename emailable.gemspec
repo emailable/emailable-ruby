@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake', '~> 13.0'
   s.add_development_dependency 'amazing_print'
-  s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'minitest', '~> 6.0'
   s.add_development_dependency 'minitest-reporters'
   s.add_development_dependency 'activemodel'
   s.add_development_dependency 'rubocop-cache-ventures'
