@@ -2,7 +2,6 @@
 
 [![Gem Version](https://badge.fury.io/rb/emailable.svg)](https://rubygems.org/gems/emailable)
 ![Build Status](https://github.com/emailable/emailable-ruby/actions/workflows/ci.yml/badge.svg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/e7eef54e491adec95e6d/maintainability)](https://codeclimate.com/github/emailable/emailable-ruby/maintainability)
 
 This is the official ruby wrapper for the Emailable API.
 
