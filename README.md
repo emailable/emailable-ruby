@@ -9,7 +9,7 @@ It also includes an Active Record (Rails) validator to verify email attributes.
 
 ## Documentation
 
-See the [Ruby API docs](https://emailable.com/docs/api/?ruby).
+See the [Ruby API docs](https://emailable.com/docs/api/?code_language=ruby).
 
 ## Installation
 
