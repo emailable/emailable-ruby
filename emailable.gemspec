@@ -17,7 +17,8 @@ Gem::Specification.new do |s|
   s.metadata = {
     'bug_tracker_uri' => 'https://github.com/emailable/emailable-ruby/issues',
     'documentation_uri' => 'https://emailable.com/docs/api/?ruby',
-    'source_code_uri' => 'https://github.com/emailable/emailable-ruby'
+    'source_code_uri' => 'https://github.com/emailable/emailable-ruby',
+    'rubygems_mfa_required' => 'true'
   }
 
   s.files = `git ls-files`.split("\n")

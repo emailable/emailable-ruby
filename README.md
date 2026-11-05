@@ -153,6 +153,14 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run
 `rake test` to run the tests. You can also run `bin/console` for an interactive
 prompt that will allow you to experiment.
 
+## Cutting a Release
+
+Run `bundle exec rake "release:prepare[x.y.z]"` on an up to date `master` with
+a clean tree, then `git push --follow-tags`. It runs the tests and RuboCop,
+bumps `lib/emailable/version.rb`, commits, and tags `x.y.z`. Pushing the tag
+triggers the release workflow, which publishes to RubyGems and creates the
+GitHub release.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
