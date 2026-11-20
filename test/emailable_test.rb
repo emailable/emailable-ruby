@@ -6,7 +6,7 @@ class EmailableTest < Minitest::Test
   end
 
   def test_verification
-    result = Emailable.verify('jarrett@emailable.com')
+    result = Emailable.verify('deliverable@example.com')
     refute_nil result.domain
     refute_nil result.email
     refute_nil result.reason
@@ -14,6 +14,12 @@ class EmailableTest < Minitest::Test
     refute_nil result.state
     refute_nil result.user
     refute_nil result.duration
+  end
+
+  def test_verification_unknown_has_no_score
+    result = Emailable.verify('unknown@example.com')
+    assert_equal 'unknown', result.state
+    assert_nil result.score
   end
 
   def test_verification_state
